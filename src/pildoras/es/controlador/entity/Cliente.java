@@ -1,6 +1,9 @@
 package pildoras.es.controlador.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="cliente")
@@ -12,12 +15,15 @@ public class Cliente {
 	private int id;
 	
 	@Column(name="nombre") //tiene que corresponder con el nombre en la BBDD
+	@NotNull
+	@Size(min=2, message = "Campo requerido")
 	private String nombre;
 	
 	@Column(name="apellido")
 	private String apellido;
 	
 	@Column(name="email")
+	@Email
 	private String email;
 
 	public Cliente() {

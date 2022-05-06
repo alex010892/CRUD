@@ -1,46 +1,36 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-
-<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/estilos.css "/>
-
-</head>
+	<head>
+		<meta charset="utf-8">
+		<title>Agregar cliente</title>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/estilos2.css">
+	</head>
 <body>
 
-	<form:form action="insertarCliente" modelAttribute="cliente" method="POST">
-
-		<form:hidden path="id"/>
-	
-		<table>
+	<form action="insertarCliente" class="form" method="post">
+		<h2 class="form__title">Ingreso datos</h2>
 		
-			<tr>
-				<td>Nombre: </td>
-				<td><form:input path="nombre"/></td>
-			</tr>
-
-			<tr>
-				<td>Apellido: </td>
-				<td><form:input path="apellido"/></td>
-			</tr>
-
-			<tr>
-				<td>Email: </td>
-				<td><form:input path="email"/></td>
-			</tr>
+		<div class="form__container">
+			<div class="form__group">
+				<input type="text" id="name" class="form__input" name="nombre" placeholder=" " required>
+				<label for="name" class="form__label">Nombre:</label>
+				<span class="form__line"></span>
+			</div>
+			<div class="form__group">
+				<input type="text" id="apellido" class="form__input" name="apellido" placeholder=" " required>
+				<label for="apellido" class="form__label">Apellido:</label>
+				<span class="form__line"></span>
+			</div>
+			<div class="form__group">
+				<input type="text" id="email" class="form__input" name="email" placeholder=" " required>
+				<label for="email" class="form__label">E-mail:</label>
+				<span class="form__line"></span>
+			</div>
 			
-			<tr>
-			<td colspan="2"><input type="submit" value="Insertar"></td>
-			</tr>
-		
-		</table>
-	
-	</form:form>
-
+			<input type="submit" class="form__submit" value="Insertar">
+		</div>
+	</form>
 </body>
 </html>

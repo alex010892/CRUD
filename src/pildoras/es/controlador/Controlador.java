@@ -2,9 +2,12 @@ package pildoras.es.controlador;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,19 +45,30 @@ public class Controlador {
 		
 		Cliente elCliente = new Cliente();
 		
-		elModelo.addAttribute("cliente", elCliente);
+		elModelo.addAttribute("elCliente", elCliente);
 		
 		return "formularioCliente";
 	}
 	
 	@PostMapping("/insertarCliente")
-	public String insertarCliente(@ModelAttribute("cliente") Cliente elCliente) {
+	public String insertarCliente(@Valid @ModelAttribute("elCliente") Cliente elCliente, BindingResult resultadoValidacion) {
 		
 		//insertar cliente en BBDD
 		
 		clienteDAO.insertarCliente(elCliente);
 		
-		return "redirect:/cliente/lista";
+		if(resultadoValidacion.hasErrors()) {
+			
+			return "modificaCliente";
+			
+		} else {
+			
+			return "redirect:/cliente/lista";
+			
+		}
+		
+		
+		//return "redirect:/cliente/lista";
 	}
 	
 	@GetMapping("/muestraFormularioActualizar")
@@ -66,12 +80,28 @@ public class Controlador {
 	
 	//establecer el cliente como atributo del modelo
 	
-	elModelo.addAttribute("cliente", elCliente);
+	elModelo.addAttribute("elCliente", elCliente);
 	
 	//enviar al formulario
 	
-	return "formularioCliente";
+	return "modificaCliente";
 	}
+	
+	/*
+	@GetMapping("/procesaFormularioActualizar")
+	public String procesaFormularioActualizar(@Valid @ModelAttribute("cliente") Cliente elCliente, BindingResult resultadoValidacion) {
+		
+		if(resultadoValidacion.hasErrors()) {
+			
+			return "modificaCliente";
+			
+		} else {
+			
+			return "redirect:/cliente/lista";
+			
+		}
+		
+	}*/
 	
 	@GetMapping("/eliminar")
 	public String eliminarCliente(@RequestParam("clienteId") int Id) {
