@@ -16,12 +16,15 @@ public class Cliente {
 	
 	@Column(name="nombre") //tiene que corresponder con el nombre en la BBDD
 	@NotNull
-	@Size(min=2, message = "Campo requerido")
+	@Size(min=1, message = "Campo requerido")
 	private String nombre;
 	
+	@NotNull
 	@Column(name="apellido")
+	@Size(min=1)
 	private String apellido;
 	
+	@NotNull
 	@Column(name="email")
 	@Email
 	private String email;

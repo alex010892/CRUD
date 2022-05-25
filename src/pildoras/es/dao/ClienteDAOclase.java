@@ -36,12 +36,13 @@ public class ClienteDAOclase implements ClienteDAO{
 		return clientes;
 	}
 
+	//@Transactional(rollbackFor = Exception.class)
 	@Transactional
 	public void insertarCliente(Cliente elCliente) {
 		// TODO Auto-generated method stub
 		
 		//obtener la session
-		
+		//sessionFactory.getCurrentSession().persist(elCliente);
 		Session miSession = sessionFactory.getCurrentSession();
 			
 		//insertar por fin el cliente
