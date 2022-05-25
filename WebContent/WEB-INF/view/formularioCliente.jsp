@@ -34,6 +34,7 @@
 			</div>
 			
 			<input type="submit" class="form__submit" value="Insertar">
+			
 		</div>
 	</form>
 </body>
